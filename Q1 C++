@@ -161,6 +161,12 @@ using namespace std;
 #define MAX 100
 char** breakString(char* str, int& size);
 
+#include <iostream>
+using namespace std;
+#define MAX 100
+char** breakString(char* str, int& size);
+char* doubleStr(char* str);
+
 void main()
 {
 	cout << "Enter a sentence:" << endl;
@@ -169,14 +175,19 @@ void main()
 	int size=0;
 	char** newsent = breakString(sent, size);
 	for (int i = 0; i < size; i++) {
+		newsent[i] =doubleStr(newsent[i]);
+	}
+	for (int i = 0; i < size; i++) {
 		cout << newsent[i]<<endl;
 	}
 	cout << size;
+	for (int i = 0; i < size; i++)
+		delete newsent[i];
 	delete[] newsent;
 }
 
 char** breakString(char* str,int& size) {
-	int count = 1,sum=1,j;
+	int count = 1,sum=0,j;
 	char* p = str;
 	char** stemp = new char*[count];
 	while (*p != '\0') {
@@ -192,18 +203,40 @@ char** breakString(char* str,int& size) {
 			sum++;
 			p++;
 		}
-		stemp[i] = new char[sum];
+		stemp[i] = new char[sum+1];
 		for ( j = 0; j < sum; j++) {
 			stemp[i][j] = *str;
 				str++;
 		}
 		stemp[i][j] = '\0';
-		p++;
-		sum = 1;
+		str++;
+		p = str;
+		sum = 0;
 	}
 	size = count;
 	return stemp;
 
 }
 
+char* doubleStr(char* str) {
+	int length = 0;
+	char* p=str;
+	char* ptemp;
+	while (*p !='\0') {
+		length++;
+		p++;
+	}
+	p = str;
+	ptemp= new char[2*length + 1];
+	for (int i = 0; i < (2 * length); i++) {
+		if (i == length)
+			p = str;
+		ptemp[i] = *p;
+		p++;
+	}
+	ptemp[2 * length] = '\0';
+	delete str;
+	return ptemp;
+
+}
 
