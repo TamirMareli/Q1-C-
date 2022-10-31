@@ -111,3 +111,47 @@ int convert(char* str) {
 	}
 	return sum;
 }
+
+#include <iostream>
+using namespace std;
+#define PI 3.14
+
+float area(int a, int b);
+float area(int A, int B, int h);
+float area(int r);
+float area(float R, float r);
+
+void main() {
+	int a, b, A, B, h, r;
+	float R, z;
+	cout << "Enter two sides into a triangle: ";
+	cin >> a, cin >> b;
+	cout << "Area = " << area(a, b) << endl;
+	cout << "Enter the lengths the two trapeze bases and its height: ";
+	cin >> A, cin >> B, cin >> h;
+	cout <<"Area = " << area(A, B, h) << endl;
+	cout << "Enter radius length: ";
+	cin >> r;
+	cout <<"Area = " << area(r) << endl;
+	cout << "Enter two radius sizes to calculate the area of a partial circle: ";
+	cin>>R, cin>>z;
+	cout  << "Area = " << area(R, z) << endl;
+
+
+}
+
+float area(int a, int b) {
+	return (float)((a * b) / 2);
+}
+
+float area(int a, int b, int h) {
+	return (float)(((a + b) / 2) * h);
+}
+
+float area(int r) {
+	return (float)(PI * r * r);
+}
+
+float area(float R, float r) {
+	return(float)(PI * (R * R - r * r));
+}
