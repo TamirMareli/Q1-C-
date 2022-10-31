@@ -155,3 +155,55 @@ float area(int r) {
 float area(float R, float r) {
 	return(float)(PI * (R * R - r * r));
 }
+
+#include <iostream>
+using namespace std;
+#define MAX 100
+char** breakString(char* str, int& size);
+
+void main()
+{
+	cout << "Enter a sentence:" << endl;
+	char* sent = new char[MAX];
+	cin.getline(sent, MAX);
+	int size=0;
+	char** newsent = breakString(sent, size);
+	for (int i = 0; i < size; i++) {
+		cout << newsent[i]<<endl;
+	}
+	cout << size;
+	delete[] newsent;
+}
+
+char** breakString(char* str,int& size) {
+	int count = 1,sum=1,j;
+	char* p = str;
+	char** stemp = new char*[count];
+	while (*p != '\0') {
+		if (*p == ' ')
+			count++;
+		p++;
+	}
+	p = str;
+	for (int i = 0; i < count; i++) {
+		while (*p!= ' ') {
+			if (*p == '\0')
+				break;
+			sum++;
+			p++;
+		}
+		stemp[i] = new char[sum];
+		for ( j = 0; j < sum; j++) {
+			stemp[i][j] = *str;
+				str++;
+		}
+		stemp[i][j] = '\0';
+		p++;
+		sum = 1;
+	}
+	size = count;
+	return stemp;
+
+}
+
+
