@@ -160,11 +160,6 @@ float area(float R, float r) {
 using namespace std;
 #define MAX 100
 char** breakString(char* str, int& size);
-
-#include <iostream>
-using namespace std;
-#define MAX 100
-char** breakString(char* str, int& size);
 char* doubleStr(char* str);
 
 void main()
@@ -189,12 +184,12 @@ void main()
 char** breakString(char* str,int& size) {
 	int count = 1,sum=0,j;
 	char* p = str;
-	char** stemp = new char*[count];
 	while (*p != '\0') {
 		if (*p == ' ')
 			count++;
 		p++;
 	}
+	char** stemp = new char* [count];
 	p = str;
 	for (int i = 0; i < count; i++) {
 		while (*p!= ' ') {
